@@ -156,7 +156,7 @@
 
 </head>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
-
+          
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -169,74 +169,44 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#myPage">INICIO</a></li>
-        <li><a href="cliente.php" target="cont">NUEVO SERVICIO</a></li>
-        <li><a href="serviciosAbiertos.php" target="cont">CONSULTAR SERVICIOS</a></li>
-        <li><a href="#googleMap">MAPA</a></li>
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">OTROS
-          <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Gruas</a></li>
-            <li><a href="#">Cobros</a></li>
-            
-          </ul>
-        </li>
-        <li><a href="#"><span class="glyphicon glyphicon-search"></span></a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
+      
+        @if (Route::has('login'))
+                
+                    @if (Auth::check())
+                       <li><a href="{{ url('/home') }}">INICIO</a></li>
 
-<!-- Container (Servicios) -->
+                    @else
+                            <?php header("Location: /login"); ?>
+
+                        <li><a href="{{ url('/login') }}">LOGIN</a></li>
+
+                        
+                    @endif
+               
+            @endif
+      </ul>
+      </div>
+    </div>
+  </nav>
+ 
 <div id="new" class="container text-center">
   <h3>GRUAS JARILLO</h3>
   <br>
-  <div class="row">
+  <div>
       
-      <iframe src="cliente.php" name="cont" id="cont" height="1300" width="1000" frameborder="0"></iframe>
+      <p>Salvamento, Servicio de Gruas de Arrastre y Plataforma para Vehiculos</p>
+      <img src="img/grua.jpg">
+
   </div>
 </div>
 
-
-<!-- Footer -->
+      <!-- Footer -->
 <footer class="text-center">
   <a class="up-arrow" href="#myPage" data-toggle="tooltip" title="TO TOP">
     <span class="glyphicon glyphicon-chevron-up"></span>
   </a><br><br>
-  <p>Desarrollado por: Perla Jarillo</p>
+  <p>Veracruz 1, Javier Rojo Gómez, 43645 Tulancingo, Hgo., México. 52 775 742 4105-- Desarrollado por: Perla Jarillo</p>
 </footer>
-
-<script>
-$(document).ready(function(){
-  // Initialize Tooltip
-  $('[data-toggle="tooltip"]').tooltip();
-  
-  // Add smooth scrolling to all links in navbar + footer link
-  $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
-
-    // Make sure this.hash has a value before overriding default behavior
-    if (this.hash !== "") {
-
-      // Prevent default anchor click behavior
-      event.preventDefault();
-
-      // Store hash
-      var hash = this.hash;
-
-      // Using jQuery's animate() method to add smooth page scroll
-      // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
-      $('html, body').animate({
-        scrollTop: $(hash).offset().top
-      }, 900, function(){
-   
-        // Add hash (#) to URL when done scrolling (default click behavior)
-        window.location.hash = hash;
-      });
-    } // End if
-  });
-})
-</script>
 
 </body>
 </html>
